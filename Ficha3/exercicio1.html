@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>        
+        <h1 class="red">Saudações</h1>
+        <p id="p1">Olá Mundo</p>
+        <p id="p2" class="red">Olá Portugal</p>
+        <p id="p3">Olá Vila do Conde</p>
+        <div>Olha uma div</div>
+        <div>Olha uma segunda div com um
+            <span>primeiro span</span>
+        </div>
+        <span>Olha um segundo span</span>     
+        
+        <script>
+            //b
+            let p2 = document.getElementById("p2");
+            console.log(p2);
+
+            //c
+            let paragraphs = document.getElementsByTagName("p");
+            for(const p of paragraphs){
+                console.log(p);
+            }            
+
+            //d
+            let paragraphsContent = document.getElementsByTagName("p");
+            for(const p of paragraphsContent){
+                console.log(p.innerHTML);
+            }
+
+            //e
+            let redClass = document.getElementsByClassName("red");
+            for(const rc of redClass){
+                console.log(rc);
+            }
+
+            //f
+            let paragraphP3 = document.querySelector("p#p3");
+            console.log(paragraphP3);
+
+            //g
+            let pDivs = document.querySelectorAll("p, div");
+            for(const elm of pDivs){
+                console.log(elm.innerHTML);
+            }
+
+            //h
+            let span = document.querySelectorAll("span");
+            for(const elm of span){
+                console.log(elm.innerHTML);
+            }
+
+            //i
+            let spanInsideTheDiv = document.querySelector("div span");
+            console.log(spanInsideTheDiv.innerHTML);
+
+            //j
+            let spanOutsideTheDiv = document.querySelector("body>span");
+            console.log(spanOutsideTheDiv.innerHTML);
+
+        </script>
+</body>
+</html>
