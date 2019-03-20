@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //a
+        const student = {
+            name: "David Silva",
+            course: "POO",
+            grade: 12
+        }    
+
+        //b
+        function listObjProperties(){
+            for(const prop in student){
+                console.log(prop)
+            }
+        }
+            //invocar a função
+            listObjProperties(); //retorna name, course e grade
+        
+        //c
+        function removeGrade(){
+            delete student.grade;
+        }        
+            //invocar a função
+            removeGrade(); //retorna name e course
+
+        //d
+        function calcObjectSize(){
+            let cont = 0;
+            for(const prop in student){
+                cont++;
+            }
+            console.log(cont);
+        }
+            //invocar a função
+            calcObjectSize(); //retorna 2
+        
+    </script>
+</body>
+</html>
