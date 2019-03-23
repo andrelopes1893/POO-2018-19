@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercicio 7</title>
+</head>
+<body>
+    <form id="frmMovies">
+        <h1>VIDIOTECA</h1><hr>
+        <!--Movie Name-->
+        <label for="movieName">Titulo do Filme</label>
+        <input type="text" id="movieName" required><br>
+        <!--Movie Genre-->
+        <label for="movieGenre">Genero do Filme</label>
+        <select id="movieGenre">
+            <option id="adventure">Aventura</option>
+            <option id="action">Ação</option>
+            <option id="comedy">Comédia</option>
+            <option id="terror" selected>Terror</option>
+            <option id="romance">Romance</option>
+            <option id="thriller">Thriller</option>
+            <option id="another">Outro</option>
+        </select><br>
+        <!--Movie Year-->
+        <label for="movieYear">Ano do Filme</label>
+        <input type="number" id="movieYear" min="1900" max="" required><br>
+        <!--Movie Cover-->
+        <label for="movieCover">Capa do Filme</label>
+        <input type="url" id="movieCover" required><br>
+        <!--Movie Trailer-->
+        <label for="movieTrailer">Trailer do Filme</label>
+        <input type="url" id="movieTrailer"><br>
+        <!--Movie Submit/Reset-->
+        <input type="submit" value="Submeter">
+        <input type="reset" value="Resetar"><hr>
+    </form>
+
+    <table></table>
+
+    <dialog id="dlgCover">
+        <img src=""/>
+    </dialog>
+    <dialog id="dlgTrailer"></dialog>
+
+    <script src="exercicio7.js"></script>
+</body>
+</html>
