@@ -1,82 +1,110 @@
 // array movie
 const movies = []
 
-const frmMovie = document.querySelector("form")
+const myForm = document.querySelector("form")
 
 //alterar o atributo max da caixa de texto do ano
 document.querySelector("#movieYear").max = new Date().getFullYear()
 
-frmMovie.addEventListener("submit", function(event){
-    // Obter os valores dos elementos do formulario
+myForm.addEventListener("submit", function(event){
+    // 1.Obter os valores dos elementos do formulario
     const movieName = document.querySelector("#movieName").value
     const movieYear = document.querySelector("#movieYear").value
     const movieGenre = document.querySelector("#movieGenre").value
     const movieCover = document.querySelector("#movieCover").value
     const movieTrailer = document.querySelector("#movieTrailer").value
 
-    // 1.verificar se o titulo do filme ja existe no array
-    if(isTitleAvailable(movieName) == true){
-        // 2.se nao existir, 
-            // 2.1.Criar um objeto Movie
-            const movie = {
-                title: movieName,
-                year: movieYear,
-                genre: movieGenre,
-                cover: movieCover,
-                trailer: movieTrailer
-            }        
-            // 2.2.inserir o objeto Movie no array movies
-            movies.push(movie)
-            renderTable()
-            console.table(movies)
+    // 2.verificar se o titulo do filme ja existe no array
+    const result = isMovie(movieName)
+
+    if (result === true) {
+        alert("Filme existente.")
     }
     else{
-        // 3.Se existir
-            // 3.1.Informar o utilizador que o filme já existe
-            alert("Titulo já exite!")
-    } 
+        // 3. criar um objeto com o filme
+        const newMovie = {
+        title: movieName,
+        year: movieYear,
+        genre: movieGenre,
+        cover: movieCover,
+        trailer: movieTrailer
+        }
 
-    event.preventDefault()
+        // 4. inserir o objeto no array 
+        movies.push(newMovie);
+    }
+        //exibir os filmes na tabela
+        renderTable();
+
+    event.preventDefault();
+    
 })
-
-// funçoes auxiliares
-function isTitleAvailable(movieName){
-    for (const movie of movies) {
-        if(movie.title.toLowerCase() === movieName.toLowerCase()){
-            return false;
+    
+//funçao para verificar se o filme ja existir
+function isMovie(movieName){
+    for (const movie of movies){
+        if (movie.newMovie === movieName) {
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
-// preencher a tabela com o array movies
+//funcao para exibir os filmes na tabela
 function renderTable(){
-    // 1.Obter uma referencia à tabela
-    const table = document.querySelector("table")
-    table.innerHTML = `<th>Titulo</th>
-        <th>Genero</th>
-        <th>Opções</th>`
-    // 2.Alimentar a tabela
+    const myTable = document.querySelector("table");
+
+    //adicionar cabeçalho a minha tabela
+    myTable.innerHTML = `
+        <tr>
+            <th>Titulo</th>
+            <th>Genero</th>
+            <th>Opções</th>
+        </tr>
+    `
     for (const movie of movies) {
-        table.innerHTML += `<tr>
-            <td>${movie.title}</td>
-            <td>${movie.genre}</td>
-            <td>
-                <button onClick='showCover("${movieCover}")'>Ver Capa</button>
-            </td>
-            <td>
-                <button>Ver Trailer</button>
-            </td>
-            <td>
-                <button>Remover</button>
-            </td>
-        </tr>`
+        myTable.innerHTML += `
+            <tr>
+                <td>${movie.title}</td>
+                <td>${movie.genre}</td>
+                <td>
+                    <button onclick="showCover('${movie.cover}')">Ver Capa</button>
+                    <button onclick="showTrailer('${movie.trailer}')">Ver Trailler</button>
+                    <button onclick="removeMovie('${movie.title}')">Remove</button>
+                </td>
+            </tr>
+        `
     }
 }
 
-function showCover(movieCover){
-    const dialog = document.querySelector("#dlgCover")
-    const img = dialog.querySelector("img")
-    img.src = movieCover
-    dialog.showModal();
+//funçao para mostrar a janela da capa do filme
+function showCover(cover){
+    //injetar o link da capa na imagem
+    const imgCover = document.querySelector("#imgCover")
+    imgCover.src = cover;
+
+    //exibir a janela no browser
+    const dlgCover = document.querySelector("#dlgCover")
+    dlgCover.showModal();
 }
+
+//evento para fechar a janela da capa do filme
+const btnCloseCover = document.querySelector("#btnCloseCover")
+btnCloseCover.addEventListener("click", function(){
+    const dlgCover = document.querySelector("#dlgCover")
+    dlgCover.close();
+})
+
+//funçao para remover um filme
+function removeMovie(){
+    for (let i = 0; i<movies.length; i++) {
+        if (movies[i].title === title){
+            //remover filme
+            movies.splice(i, 1);
+        }
+    }
+
+    //atualizar a tabela
+    renderTable();
+}
+    
